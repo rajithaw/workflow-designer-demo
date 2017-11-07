@@ -24,6 +24,7 @@ class SearchWorkflow extends React.Component {
     constructor(props, context) {
         super(props, context);
 
+        this.filter = props.filter;
         this.onNameChange = this.onNameChange.bind(this);
         this.onCreatedAfterChange = this.onCreatedAfterChange.bind(this);
         this.onCreatedBeforeChange = this.onCreatedBeforeChange.bind(this);
@@ -31,24 +32,19 @@ class SearchWorkflow extends React.Component {
     }
 
     onNameChange(event) {
-        this.name = event.target.value;
+        this.filter.name = event.target.value;
     }
 
     onCreatedAfterChange(event) {
-        this.createdAfter = event.target.value;
+        this.filter.createdAfter = event.target.value;
     }
 
     onCreatedBeforeChange(event) {
-        this.createdBefore = event.target.value;
+        this.filter.createdBefore = event.target.value;
     }
 
     onSearchClick(event) {
-        const filter = this.props.filter;
-        filter.name = this.name;
-        filter.createdBefore = this.createdBefore;
-        filter.createdAfter = this.createdAfter;
-
-        this.setState({filter: filter});
+        this.setState({filter: this.filter});
         this.props.onSearchWorkflows(event);
     }
 
@@ -67,6 +63,7 @@ class SearchWorkflow extends React.Component {
                         placeholder="Workflow Name"
                         fullWidth
                         margin="normal"
+                        defaultValue={this.filter.name}
                         onChange={this.onNameChange}/>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -79,6 +76,7 @@ class SearchWorkflow extends React.Component {
                             shrink: true,
                         }}
                         fullWidth
+                        defaultValue={this.filter.createdAfter}
                         onChange={this.onCreatedAfterChange}/>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -91,6 +89,7 @@ class SearchWorkflow extends React.Component {
                             shrink: true,
                         }}
                         fullWidth
+                        defaultValue={this.filter.createdBefore}
                         onChange={this.onCreatedBeforeChange}/>
                 </Grid>
                 <Grid container justify="center">
