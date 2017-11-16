@@ -10,7 +10,7 @@ class SearchWorkflowPage extends React.Component {
         super(props, context);
         
         this.state = {
-            filter: Object.assign({}, props.filter)
+            query: Object.assign({}, props.query)
         };
 
         this.searchWorkflows = this.searchWorkflows.bind(this);
@@ -18,27 +18,27 @@ class SearchWorkflowPage extends React.Component {
 
     searchWorkflows(event) {
         event.preventDefault();
-        alert(`Searching... ${this.state.filter.name} - ${this.state.filter.createdAfter} - ${this.state.filter.createdBefore}`);
-        this.props.actions.searchWorkflows(this.state.filter);
+        alert(`Searching... ${this.state.query.name} - ${this.state.query.createdAfter} - ${this.state.query.createdBefore}`);
+        this.props.actions.searchWorkflows(this.state.query);
     }
 
     render() {
         return (
             <SearchWorkflow 
-                filter = {this.state.filter}
+                query = {this.state.query}
                 onSearchWorkflows = {this.searchWorkflows} />
         );
     }
 }
 
 SearchWorkflowPage.propTypes = {
-    filter: PropTypes.object.isRequired,
+    query: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
     return {
-        filter: state.workflowSearchFilter
+        query: state.workflowQuery
     };
 }
 

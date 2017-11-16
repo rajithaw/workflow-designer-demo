@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import workflows from './workflowReducer';
-import workflowSearchFilter from './workflowSearchFilterReducer';
+import workflowReducer from './workflowReducer';
+import workflowQueryReducer from './workflowQueryReducer';
 
 const rootReducer = combineReducers({
-    workflows,
-    workflowSearchFilter
+    workflowsList: workflowReducer,
+    workflowQuery: workflowQueryReducer
 });
 
 export default rootReducer;

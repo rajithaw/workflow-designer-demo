@@ -24,7 +24,7 @@ class SearchWorkflow extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.filter = props.filter;
+        this.query = props.query;
         this.onNameChange = this.onNameChange.bind(this);
         this.onCreatedAfterChange = this.onCreatedAfterChange.bind(this);
         this.onCreatedBeforeChange = this.onCreatedBeforeChange.bind(this);
@@ -32,19 +32,19 @@ class SearchWorkflow extends React.Component {
     }
 
     onNameChange(event) {
-        this.filter.name = event.target.value;
+        this.query.name = event.target.value;
     }
 
     onCreatedAfterChange(event) {
-        this.filter.createdAfter = event.target.value;
+        this.query.createdAfter = event.target.value;
     }
 
     onCreatedBeforeChange(event) {
-        this.filter.createdBefore = event.target.value;
+        this.query.createdBefore = event.target.value;
     }
 
     onSearchClick(event) {
-        this.setState({filter: this.filter});
+        this.setState({workflowQuery: this.query});
         this.props.onSearchWorkflows(event);
     }
 
@@ -55,7 +55,7 @@ class SearchWorkflow extends React.Component {
             <Grid container>
                 <Grid item xs={12}>
                     <TextField
-                        id="full-width"
+                        id="name"
                         type="search"
                         InputLabelProps={{
                             shrink: true,
@@ -63,7 +63,7 @@ class SearchWorkflow extends React.Component {
                         placeholder="Workflow Name"
                         fullWidth
                         margin="normal"
-                        defaultValue={this.filter.name}
+                        defaultValue={this.query.name}
                         onChange={this.onNameChange}/>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -76,7 +76,7 @@ class SearchWorkflow extends React.Component {
                             shrink: true,
                         }}
                         fullWidth
-                        defaultValue={this.filter.createdAfter}
+                        defaultValue={this.query.createdAfter}
                         onChange={this.onCreatedAfterChange}/>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -89,7 +89,7 @@ class SearchWorkflow extends React.Component {
                             shrink: true,
                         }}
                         fullWidth
-                        defaultValue={this.filter.createdBefore}
+                        defaultValue={this.query.createdBefore}
                         onChange={this.onCreatedBeforeChange}/>
                 </Grid>
                 <Grid container justify="center">
@@ -110,7 +110,7 @@ class SearchWorkflow extends React.Component {
 
 SearchWorkflow.propTypes = {
     classes: PropTypes.object.isRequired,
-    filter: PropTypes.object,
+    query: PropTypes.object,
     onSearchWorkflows: PropTypes.func.isRequired
 };
 

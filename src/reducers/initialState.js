@@ -1,6 +1,9 @@
 export default {
-    workflows: [],
-    filter: {
+    workflowsList: {
+        totalCount: 0,
+        workflows: []
+    },
+    workflowQuery: {
         name: '',
         createdAfter: '',
         createdBefore: ''
