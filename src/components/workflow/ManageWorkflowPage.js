@@ -9,35 +9,46 @@ class ManageWorkflowPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
+        let workflowId = props.match.params.id || '';
+        
+        debugger;
+        if(workflowId) {
+            props.actions.loadWorkflow(workflowId);
+        }
+
         this.state = {
             workflow: {
+                id: '',
                 name: '',
                 data: {}
             }
         };
+
+        this.onClickSave = this.onClickSave.bind(this);
     }
 
     onClickSave() {
-        this.props.actions.createhWorkflow(this.state.workflow);
+        this.props.actions.createWorkflow(this.state.workflow);
     }
 
     render() {
         return(
             <div>
                 <h1>Manage Workflow</h1>
-                <ManageWorkflow />
+                <ManageWorkflow workflow={this.state.workflow} onSaveWorkflow={this.onClickSave}/>
             </div>
         );
     }
 }
 
 ManageWorkflowPage.propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    match: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
     return {
-        courses: state.cources
+        workflow: state.activeWorkflow
     };
 }
 

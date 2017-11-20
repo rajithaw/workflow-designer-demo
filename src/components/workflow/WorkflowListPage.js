@@ -7,6 +7,7 @@ class WorkflowListPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
+        debugger;
         this.props.dispatch(workflowActions.loadWorkflows());
     }
 
@@ -24,9 +25,10 @@ WorkflowListPage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
+    debugger;
     return {
-        workflows: state.workflowsList.workflows,
-        totalCount: state.workflowsList.totalCount
+        workflows: state.workflowList.workflows,
+        totalCount: state.workflowList.totalCount
     };
 }
 

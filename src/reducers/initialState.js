@@ -1,5 +1,5 @@
 export default {
-    workflowsList: {
+    workflowList: {
         totalCount: 0,
         workflows: []
     },
@@ -7,5 +7,10 @@ export default {
         name: '',
         createdAfter: '',
         createdBefore: ''
+    },
+    activeWorkflow: {
+        id: '',
+        name: '',
+        data: {}
     }
 };

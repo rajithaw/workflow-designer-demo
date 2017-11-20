@@ -1,12 +1,13 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
+import { debug } from 'util';
 
-export default function workflowReducer(state = initialState.workflowsList, action) {
+export default function workflowReducer(state = initialState.activeWorkflow, action) {
     switch(action.type) {
-        case types.LOAD_WORKFLOWS_SUCCESS:
-            return action.workflowsList;
-        case types.CREATE_WORKFLOW:
-            return [...state, Object.assign({}, action.workflow)];
+        case types.LOAD_WORKFLOW_SUCCESS:
+            return Object.assign({}, state, action.workflow);
+        case types.CREATE_WORKFLOW_SUCCESS:
+            return Object.assign({}, state, action.workflow);
         default:
             return state;
     }
